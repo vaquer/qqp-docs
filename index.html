@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,9 +212,7 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,27 +220,32 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#introduccion" class="toc-h1 toc-link" data-title="introduccion">Introducción</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#productos" class="toc-h1 toc-link" data-title="productos">Productos</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#lista-de-productos" class="toc-h2 toc-link" data-title="lista-de-productos">Lista de productos</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#obtener-un-producto-especifico" class="toc-h2 toc-link" data-title="obtener-un-producto-especifico">Obtener un producto especifico</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#precios" class="toc-h1 toc-link" data-title="precios">Precios</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#lista-de-precios" class="toc-h2 toc-link" data-title="lista-de-precios">Lista de precios</a>
+                  </li>
+                  <li>
+                    <a href="#obtener-precios-de-un-producto-especifico" class="toc-h2 toc-link" data-title="obtener-precios-de-un-producto-especifico">Obtener precios de un producto especifico</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errores" class="toc-h1 toc-link" data-title="errores">Errores</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -253,223 +256,291 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='introduccion'>Introducción</h1>
+<p>Bienvenido a la documentación del <em>API QQP</em>. Puedes usar los endpoints de esta API para obtener información sobre los precios de los productos registrados por PROFECO.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Estos datos son recabados de la base de datos oficial de PROFECO mediante un proceso de ETL que actualiza los datos cada mes.</p>
+<h1 id='productos'>Productos</h1><h2 id='lista-de-productos'>Lista de productos</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://datos.gob.mx/qqp/api/v1/products'</span><span class="p">,</span>\
+  <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">'page'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'limit'</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
+<span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://datos.gob.mx/qqp/api/v1/products?page=1&amp;limit=100"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>El comando anterior regresa una respuesta JSON estructurada de la siguiente manera:</p>
 </blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"results"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_profeco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0166"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACEITE"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_profeco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACEITE DE OLIVA"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Este endpoint regresa la lista de todos los productos registrados en la base de datos de QQP.</p>
+<h3 id='peticion-http'>Petición HTTP</h3>
+<p><code>GET https://datos.gob.mx/qqp/api/v1/products</code></p>
+<h3 id='parametros-query-parameters'>Parametros (Query Parameters)</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Default</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>Página del listado de productos.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>100</td>
+<td>Tamaño de página en el listado de productos.</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Nota — El parametro <strong>limit</strong> acepta valores con minimo 50 y maximo 500
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='obtener-un-producto-especifico'>Obtener un producto especifico</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://datos.gob.mx/qqp/api/v1/products/2'</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://datos.gob.mx/qqp/api/v1/products/2"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>El comando anterior regresa una respuesta JSON estructurada de la siguiente manera:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_profeco"</span><span class="p">:</span><span class="w"> </span><span class="s2">"002"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Producto 2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Este endpoint regresa información de un producto especifico por medio de su ID.</p>
+<h3 id='peticion-http-2'>Petición HTTP</h3>
+<p><code>GET https://datos.gob.mx/qqp/api/v1/products/&lt;ID&gt;</code></p>
+<h3 id='parametros-de-url'>Parametros de URL</h3>
+<table><thead>
+<tr>
+<th>Parametro</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>Identificador numerico del producto dentro de la base de datos de QQP</td>
+</tr>
+</tbody></table>
+<h1 id='precios'>Precios</h1><h2 id='lista-de-precios'>Lista de precios</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://datos.gob.mx/qqp/api/v1//prices'</span><span class="p">,</span>\
+  <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">'page'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'limit'</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
+<span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://datos.gob.mx/qqp/api/v1/prices?page=1&amp;limit=100"</span>
+</code></pre>
+<blockquote>
+<p>El comando anterior regresa una respuesta JSON estructurada de la siguiente manera:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id_producto"</span><span class="p">:</span><span class="w"> </span><span class="mi">166</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62096"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACEITE CAPULLO BOTELLA 840 ML. CANOLA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SORIANA SUPER SUCURSAL CUERNAVACA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APOLO XI 2, ESQ. PODER LEGISLATIVO"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62250"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fecha_observacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/06/2018"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fecha_actualizacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18/05/2018"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.05</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id_producto"</span><span class="p">:</span><span class="w"> </span><span class="mi">166</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62088"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACEITE CAPULLO BOTELLA 840 ML. CANOLA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEGA COMERCIAL MEXICANA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VICENTE GUERRERO 205 ENTRE PERICON Y DE LA SELVA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62270"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fecha_observacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06/06/2018"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fecha_actualizacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18/05/2018"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.05</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p>Este endpoint regresa la lista de precios de los productos vs marcas registrados por PROFECO.</p>
+<h3 id='peticion-http-3'>Petición HTTP</h3>
+<p><code>GET https://datos.gob.mx/qqp/api/v1/prices/?page=1</code></p>
+<h3 id='parametros-query-parameters-2'>Parametros (Query Parameters)</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Parametro</th>
 <th>Default</th>
-<th>Description</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>page</td>
+<td>1</td>
+<td>Página del listado de productos.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>limit</td>
+<td>100</td>
+<td>Tamaño de página en el listado de productos.</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+Nota — El parametro <strong>limit</strong> acepta valores con minimo 50 y maximo 500
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='obtener-precios-de-un-producto-especifico'>Obtener precios de un producto especifico</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://datos.gob.mx/qqp/api/v1/prices/2'</span><span class="p">,</span>\
+  <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">'page'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'limit'</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
+<span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://datos.gob.mx/qqp/api/v1/prices/2/?page=1"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>El comando anterior regresa una respuesta JSON estructurada de la siguiente manera:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id_producto"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62096"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACEITE CAPULLO BOTELLA 840 ML. CANOLA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SORIANA SUPER SUCURSAL CUERNAVACA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APOLO XI 2, ESQ. PODER LEGISLATIVO"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62250"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fecha_observacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/06/2018"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fecha_actualizacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18/05/2018"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.05</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id_producto"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id_establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62088"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACEITE CAPULLO BOTELLA 840 ML. CANOLA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"establecimiento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEGA COMERCIAL MEXICANA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VICENTE GUERRERO 205 ENTRE PERICON Y DE LA SELVA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62270"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fecha_observacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06/06/2018"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fecha_actualizacion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18/05/2018"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"precio"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.05</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p>Este endpoint filtra la lista de precios por ID de producto y regresa los precios por marca del producto.</p>
+<h3 id='peticion-http-4'>Petición HTTP</h3>
+<p><code>GET https://datos.gob.mx/qqp/api/v1/prices/&lt;ID&gt;</code></p>
+<h3 id='parametros-de-url-2'>Parametros de URL</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Parametro</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>Identificador numerico del producto dentro de la base de datos de QQP</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='parametros-query-parameters-3'>Parametros (Query Parameters)</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Parametro</th>
+<th>Default</th>
+<th>Descripción</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>page</td>
+<td>1</td>
+<td>Página del listado de productos.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>100</td>
+<td>Tamaño de página en el listado de productos.</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+<h1 id='errores'>Errores</h1>
+<aside class="notice">
+Los siguientes códigos son tomados del estandar REST.
+</aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>El API QQP maneja los siguientes códigos de error:</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Código</th>
+<th>Significado</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request sucks.</td>
+<td>Bad Request -- Petición invalida.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>Unauthorized -- Petición no autorizada.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden -- El recurso que solicitas no esta disponible.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- El recurso que solicitaste no existe.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- Metodo HTTP invalido.</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>Not Acceptable -- El recurso solicitado esta con otro formato distinto a JSON.</td>
 </tr>
 <tr>
 <td>418</td>
@@ -477,15 +548,15 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- Se ha detectado un uso intensivo no autorizado del recurso.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>Internal Server Error -- Problemas internos en el servidor. Intenta más tarde.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Service Unavailable -- Servicio temporalmente deshabilitado por mantenimiento.</td>
 </tr>
 </tbody></table>
 
@@ -493,9 +564,7 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
