@@ -11,8 +11,8 @@ Código | Significado
 ---------- | -------
 400 | Bad Request -- Petición invalida.
 401 | Unauthorized -- Petición no autorizada.
-403 | Forbidden -- El recurso que solicitas no esta disponible.
-404 | Not Found -- El recurso que solicitaste no existe.
+403 | Forbidden -- El recurso solicitado no esta disponible.
+404 | Not Found -- El recurso solicitado no existe.
 405 | Method Not Allowed -- Metodo HTTP invalido.
 406 | Not Acceptable -- El recurso solicitado esta con otro formato distinto a JSON.
 418 | I'm a teapot.
